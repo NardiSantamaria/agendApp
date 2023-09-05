@@ -1,0 +1,95 @@
+$background: #282c34;
+$links: #F7D336;
+.body{
+    min-height: 80vh;
+    padding-left: 2%;
+}
+
+.App-header {
+    background-color: $background;
+    min-height: 8vh;
+    min-width:100%;
+    display: flex;
+    flex-direction: column;
+    padding:20px 20px 20px 2%;
+}
+.tittle-link {
+    color: $links;
+    text-align: left;
+    font-size:50px;
+    text-decoration: none;
+    padding-left: 2%;
+}
+.tittle-board{
+    color:aquamarine;
+    font-size: 50px;
+    font-weight: 400;
+    margin: 17px 0 0 0
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.row-reverse{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.column{
+    display:flex;
+    flex-direction: column;
+}
+.footer{
+    min-height: 8vh;
+    background-color: #4ED2E2;
+    color:#0B1C1E;
+    padding-left: 2%;
+}
+.footer-text{
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.imgLogo{
+    height: 7.5vh;
+    margin-left: 2%;
+    vertical-align: sub;
+}
+.imgBoard{
+    height: 8.5vh;
+    margin-left: 0px;
+    vertical-align: middle;
+}
+.w-50{
+    min-width: 50%;
+}
+.w-20{
+    width: 20%;
+}
+.w-30{
+    min-width: 30vw;
+}
+.w-70{
+    min-width: 65vw;
+}
+.NavBar{
+    justify-content: center;
+    a{
+        margin-right: 20px;
+    }
+}
+.CircleLink{
+    border-radius: 90%;
+    background-color: white;
+    height: 60px;
+    width: 65px;
+    margin:10%;
+    align-items: center;
+    .imgLink{
+        height: 41px;
+        align-self: center;
+        margin:auto;
+        padding:8%;
+    }
+}
+.boardDiv{
+    border-right: solid 1px black;
+}
