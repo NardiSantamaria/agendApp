@@ -19,12 +19,14 @@ $links: #F7D336;
     font-size:50px;
     text-decoration: none;
     padding-left: 2%;
+    font-family: math;
 }
 .tittle-board{
     color:aquamarine;
     font-size: 50px;
     font-weight: 400;
-    margin: 17px 0 0 0
+    margin: 17px 0 0 0;
+    font-family: math;
 }
 .row{
     display: flex;
@@ -40,7 +42,7 @@ $links: #F7D336;
 }
 .footer{
     min-height: 8vh;
-    background-color: #4ED2E2;
+    background-color: aliceblue;
     color:#0B1C1E;
     padding-left: 2%;
 }
@@ -54,7 +56,7 @@ $links: #F7D336;
     vertical-align: sub;
 }
 .imgBoard{
-    height: 8.5vh;
+    height: 6.5vh;
     margin-left: 0px;
     vertical-align: middle;
 }
@@ -68,7 +70,7 @@ $links: #F7D336;
     min-width: 30vw;
 }
 .w-70{
-    min-width: 65vw;
+    min-width: 70vw;
 }
 .NavBar{
     justify-content: center;

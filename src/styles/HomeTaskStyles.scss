@@ -1,12 +1,23 @@
+.home-task{
+    background-color: pink;
+}
 .container-home{
     padding: 20px;
     border-bottom: 1px solid gray;
     min-width: 100%;
+    table{
+        min-width: 90%
+    }
     ul{
         text-align: right;
         li{
-            color: blue;
+            color:black;
             font-size:16px;
+            font-family: cursive;
+            list-style: none;
+            border-bottom: solid gray 1px;
+            text-align: left;
+            line-height: 1.6;
         }
     }
 }
