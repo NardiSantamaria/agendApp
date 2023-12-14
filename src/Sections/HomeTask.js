@@ -11,7 +11,7 @@ class HomeTask extends React.Component{
         this.state={tasks: Array };
     }
     render(){
-        return <div className="w-70">
+        return <div className="w-70 home-task">
             <div className="container-home">
                 <table>
                     <thead> 
