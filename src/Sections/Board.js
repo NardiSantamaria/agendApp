@@ -1,8 +1,9 @@
 import React from "react";
+import "../styles/notesPage.scss";
 
 class Board extends React.Component{
     render(){
-        return <div className="w-30 boardDiv">
+        return <div className="boardDiv">
             notes
         </div>
     }

@@ -11,24 +11,23 @@ class HomeTask extends React.Component{
         this.state={tasks: Array };
     }
     render(){
-        return <div className="w-70 home-task">
+        return <div className="home-task">
             <div className="container-home">
                 <table>
                     <thead> 
                         <div className="row">
-                            <h1>Tareas de Hoy</h1>
+                            <h2>Tareas de Hoy</h2>
                             <a>
                                 <img src={agregarTaskimg} alt="logo" /> 
                             </a>
                         </div>
                     </thead>
-                    {tasks.map((task, index)=> 
-                        <tr>
+                    <ul>
+                        <Task></Task>
+                        {tasks.map((task, index)=> 
                             <Task time={task.time} tittle={task.tittle}></Task>
-                        </tr>
-                    )}
-                   
-                    
+                        )}
+                    </ul>
                 </table>
             </div>
         </div>

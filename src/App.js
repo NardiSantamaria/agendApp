@@ -8,13 +8,13 @@ function App() {
   return (
     <div className="App">
       <HeaderPage></HeaderPage>
-      <body className="body row">
+      <div className="body row">
         <Board></Board>
         <div className="column">
           <HomeTask></HomeTask>
           <FreeTime></FreeTime>
         </div>
-      </body>
+      </div>
       <Footer></Footer>
     </div>
   );
