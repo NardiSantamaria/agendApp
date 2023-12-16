@@ -10,7 +10,7 @@ function App() {
       <HeaderPage></HeaderPage>
       <div className="body row">
         <Board></Board>
-        <div className="column">
+        <div className="columntask">
           <HomeTask></HomeTask>
           <FreeTime></FreeTime>
         </div>

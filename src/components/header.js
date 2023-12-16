@@ -5,21 +5,27 @@ import imagination from '../images/imagination.png';
 class HeaderPage extends React.Component{
     render(){
         return <div>
-            <header className="App-header">
+            <header className="app-header">
                 <div className="row">
-                    <div className="w-30 row">
-                        <h1 className="tittle-board">
-                            Board
-                        </h1><img src={imagination} className="App-logo imgBoard"  /> 
+                    <div className="columnheader">
+                        <div className="">
+                            <h1 className="tittle-board">
+                                Board
+                            </h1>
+                        </div>
+                        <img src={imagination} className="app-logo imgBoard"  />
                     </div>
-                    <a className="tittle-link w-50"
-                        href=""
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        Lunes 
-                        <img src={calendar} className="App-logo imgLogo"  /> 
-                    </a>
-                    <Actions></Actions>
+                    <div className="columnheader">
+                        <div className="">
+                            <h1 className="tittle-link">
+                                Lunes
+                            </h1>
+                        </div>
+                        <img src={calendar} className="app-logo imgLogo"  /> 
+                    </div>
+                    <div className="columnheader">
+                        <Actions></Actions>
+                    </div>
                 </div>
             </header>
         </div>

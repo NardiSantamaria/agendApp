@@ -5,20 +5,20 @@ import trashImage from '../images/images.png';
 import { Link, NavLink } from "react-router-dom";
 class actions extends React.Component{
     render(){
-        return <div class="NavBar row w-20">
-            <Link className="links" to="/finanzas">
-            <div className="CircleLink row">
-                <img src={fincancesImage} className="App-logo imgLink" alt="logo" /> 
-            </div>
-            </Link>
-            <Link className="links" to="/tareas">
-                <div className="CircleLink row">
-                    <img src={taskImage} className="App-logo imgLink" alt="logo" /> 
+        return <div className="row">
+            <Link className="actionButton" to="/finanzas">
+                <div className=" ">
+                    <img src={fincancesImage} className="" alt="logo" /> 
                 </div>
             </Link>
-            <Link className="links" to="/eliminar/1">
-                <div className="CircleLink row">
-                    <img src={trashImage} className="App-logo imgLink" alt="logo" /> 
+            <Link className="actionButton" to="/tareas">
+                <div className=" ">
+                    <img id="taskcheck" src={taskImage} className="" alt="logo" /> 
+                </div>
+            </Link>
+            <Link className="actionButton" to="/eliminar/1">
+                <div className=" ">
+                    <img id="trash" src={trashImage} className="" alt="logo" /> 
                 </div>
             </Link>
         </div>
