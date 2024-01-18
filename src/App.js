@@ -15,7 +15,6 @@ function App() {
           <FreeTime></FreeTime>
         </div>
       </div>
-      <Footer></Footer>
     </div>
   );
 }

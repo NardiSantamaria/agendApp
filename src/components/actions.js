@@ -5,7 +5,7 @@ import trashImage from '../images/images.png';
 import { Link, NavLink } from "react-router-dom";
 class actions extends React.Component{
     render(){
-        return <div className="row">
+        return <div className="row" id="actionsRow">
             <Link className="actionButton" to="/finanzas">
                 <div className=" ">
                     <img src={fincancesImage} className="" alt="logo" /> 

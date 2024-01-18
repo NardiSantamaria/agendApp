@@ -5,29 +5,43 @@ $links: #F7D336;
 }
 .app-header {
     background-color: $background;
-    min-height: 8vh;
+    max-height: 100px;
+    h1{
+        font-family: Courier New;
+        margin: 0;
+    }
     .row{
+        #actionsColumn{
+            justify-content: end;
+        }
+        #boardColumn{
+            justify-content: center;
+        }
         .columnheader{
             flex-grow: 1;
             display: inline-flex;
         }
     }
+    #actionsRow{
+        width: 220px;
+        justify-content: space-around;
+        margin: auto 15px auto 0;
+    }
     .tittle-link {
         color: $links;
         text-align: left;
         font-size:50px;
-        text-decoration: none;
-        font-family: math;
+       // font-family: math;
     }
     .tittle-board{
         color:aquamarine;
         font-size: 50px;
-        font-weight: 400;
-        font-family: math;
+        //font-weight: 400;
+       // font-family: math;
     }
     .imgLogo{
-        height: 7.5vh;
-        vertical-align: sub;
+        height:60px;
+        margin-left: 10px;
     }  
     .actionButton{
         div{
@@ -76,7 +90,6 @@ $links: #F7D336;
 .imgBoard{
     height: 60px;
     margin-left: 0px;
-    vertical-align: middle;
 }
 FreeTime{
     background-color: antiquewhite;

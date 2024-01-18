@@ -32,7 +32,7 @@ class FreeTime extends React.Component{
                 <ul>
                     <Task key="0"></Task>
                     {tasks.map(fact=> (
-                        <Task key={JSON.stringify(fact._id)} text={JSON.stringify(fact.text)} time={JSON.stringify(fact.createdAt)} use={JSON.stringify(fact.used)}></Task>
+                        <Task key={fact._id} text={fact.text} use={fact.used}></Task>
                     ))}
                 </ul>
         </div>
