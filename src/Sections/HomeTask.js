@@ -2,7 +2,8 @@ import React from "react";
 import "../styles/HomeTaskStyles.scss";
 import { useState } from "react";
 import Task from "../components/task";
-import agregarTaskimg from "../images/agregar.png"
+import agregarTaskimg from "../images/agregar.png";
+import FormAddTask from "../components/modals/FormAddTask";
 class HomeTask extends React.Component{
     constructor(props){
         super(props);
@@ -39,13 +40,8 @@ class HomeTask extends React.Component{
         const {error, isLoaded, tasks}=this.state;
         
         return <div className="home-task">
-        <div className="container-home">
-                <div className="row">
-                    <h2>Tareas de hoy</h2>
-                    <a>
-                        <img src={agregarTaskimg} alt="logo" /> 
-                    </a>
-                </div>
+            <div className="container-home">
+                <FormAddTask></FormAddTask>
                 <ul>
                     <Task key="0"></Task>
                     {tasks.map(fact=> (
