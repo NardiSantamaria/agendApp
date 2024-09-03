@@ -1,8 +1,6 @@
 import React from "react";
 import "../styles/HomeTaskStyles.scss";
-import { useState } from "react";
 import Task from "../components/task";
-import agregarTaskimg from "../images/agregar.png";
 import FormAddTask from "../components/modals/FormAddTask";
 class HomeTask extends React.Component{
     constructor(props){
@@ -14,39 +12,35 @@ class HomeTask extends React.Component{
         };
     }
     componentDidMount(){
-        fetch("https://cat-fact.herokuapp.com/facts")
+        fetch("http://localhost:8080/task/tasks")
         .then( 
             res=> res.json() 
         )
         .then(
             (resultJson)=>{
-                // let fact=resultJson[0]
-                // console.log(JSON.stringify(fact._id));
                 this.setState({
                     isLoaded:true,
                     tasks:resultJson
                 });
-                
             }
-            // (error)=>{
-            //     this.setState({
-            //         isLoaded: true,
-            //         error
-            //     });
-            // }
-        );
+        ).catch(
+            error=>{
+                console.log(error);
+            }
+        )
     }
     render(){
         const {error, isLoaded, tasks}=this.state;
-        
         return <div className="home-task">
             <div className="container-home">
                 <FormAddTask></FormAddTask>
                 <ul>
-                    <Task key="0"></Task>
-                    {tasks.map(fact=> (
-                        <Task key={fact._id} text={fact.text} time={fact.createdAt} use={fact.used}></Task>
-                    ))}
+                    {tasks.map(task=> {
+                        if(task.scheduledDatetime!=null && task.scheduledDatetime!=""){
+                            <Task key={task.idTask} text={task.tittle} time={task.scheduledDatetime} description={task.description} status={task.idStatus} ></Task>
+                        }
+                        return null;
+                    })}
                 </ul>
             </div>
         </div>

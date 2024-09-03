@@ -10,9 +10,8 @@ class FreeTime extends React.Component{
         }
     }
     componentDidMount(){
-        fetch("https://cat-fact.herokuapp.com/facts").then(res => res.json())
+        fetch("http://localhost:8080/task/tasks").then(res => res.json())
         .then((jsonTasks)=>{
-            console.log(jsonTasks);
             this.setState({
                 isLoaded:true,
                 tasks:jsonTasks
@@ -30,10 +29,12 @@ class FreeTime extends React.Component{
                     </a>
                 </div>
                 <ul>
-                    <Task key="0"></Task>
-                    {tasks.map(fact=> (
-                        <Task key={fact._id} text={fact.text} use={fact.used}></Task>
-                    ))}
+                    {tasks.map(task=> {
+                        if(task.scheduledDatetime==null){
+                            return <Task key={task.id_task} text={task.tittle} description={task.description} status={task.status} ></Task>
+                        }
+                        return null;
+                    })}
                 </ul>
         </div>
     }
