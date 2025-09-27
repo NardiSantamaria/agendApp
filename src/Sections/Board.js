@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/notesPage.scss";
+import "../styles/board.scss";
 import imagination from '../images/imagination.png';
 
 class Board extends React.Component{
@@ -8,10 +8,10 @@ class Board extends React.Component{
             <div className="row">
                 <div className="columnheader" id="boardColumn" style={{width:'100%', justifyContent:"center", display:"flex"}}>
                     <div className="">
-                        <h1 className="tittle-board">
+                        <h2 className="tittle_board">
                             Board
-                            <img src={imagination} className="app-logo imgBoard"  />
-                        </h1>
+                            <img src={imagination} className="imgBoard"  />
+                        </h2>
                     </div>
                 </div>
             </div>

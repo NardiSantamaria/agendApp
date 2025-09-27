@@ -6,10 +6,11 @@ class Task extends React.Component{
         const{time=''}=this.props;
         const{description=''}=this.props;
         const{status=''}=this.props;
+        const{taskScheduledDateTime=''}=this.props;
         // if(this.props.use==false){
             return(
                 <li>
-                    {time} {text} {description} {status}
+                    {time} {text} {description} {status} {taskScheduledDateTime}
                 </li>
             )
         // }

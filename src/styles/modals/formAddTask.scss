@@ -1,16 +1,25 @@
 
+
 .row{
+    font-family:'Courier New', Courier, monospace !important;
     justify-content: space-between;
-    h2{
+    .addTaskButton{
+        cursor: pointer;
+        img{
+            width: 30px;
+            height: 30px;
+        }
+
+    }
+    #modal-modal-title{
         font-weight: 100;
-        padding-left: 4%;
         color: mediumslateblue;
-        line-height: 0.4px;
+        text-align: center;
+        margin:auto;
+        font-size: 20px;
     }
 }
-img{
-    max-height: 40px;
-}
+
 .box-styles{
     position: absolute;
     top: 50%;
@@ -25,15 +34,12 @@ img{
     padding-bottom: 10px;
     min-width:500px;
     text-align: center;
-    h4{
-        color:blueviolet;
-        text-align: center;
-        margin:auto;
-    }
+    
     .form-modal-addTask{
         min-width: 400px;
         .select-field{
             margin-top: 10px;
         }
+        
     }
 };

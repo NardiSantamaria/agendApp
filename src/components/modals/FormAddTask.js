@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Box, FormControl, MenuItem, Select, Modal,TextField, Button, InputLabel } from "@mui/material";
 import "../../styles/modals/formAddTask.scss";
 import agregarTaskimg from "../../images/agregar.png";
@@ -7,8 +7,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import dayjs from 'dayjs';
-import Status from '../Status';
-function FormAddTask(){
+
+function FormAddTask(props){
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
@@ -16,77 +16,85 @@ function FormAddTask(){
     };
     const handleClose = () => {
         setOpen(false);
+        cleanFields();
     };
     const [date, setDate] = React.useState(null);
     const [time, setTime] = React.useState(null);
     const [tipo, setChangetipo]=React.useState(0);
-    const [tittle, setTittle]=React.useState('');
+    const [taskTittle, setTaskTittle]=React.useState('');
     const [description, setDescr]=React.useState('');
-    const [status, setStatus]=React.useState(0);
-    
-    const handleChangeStatus=(event)=>{
-        console.log('-------------------------');
-        console.log(event);
-        setStatus(event.target.value)
-    }
-    const showFields=()=>{
-        console.log(tipo);
-        if(tipo==1){
-
-        }
-    }
-    useEffect(()=>{
-        showFields();
-    }, [tipo])
+    const [status, setStatus]=React.useState(1);
+    let dateTime=null;
     const handleChangeTipo=(event)=>{
         setChangetipo(event.target.value);
-        
+        if(event.target.value==2){
+            setDate(null);
+            setTime(null);
+        }
+
     }
-    const handleChangeTittle=(event) =>{
-        setTittle(event.target.value)
+
+    const handleChangeTaskTittle=(event) =>{
+        setTaskTittle(event.target.value)
     }
+
     const handleChangeDes=(event)=>{
         setDescr(event.target.value)
     }
+    
+    if(date!=null && time!=null ){
+        dateTime=dayjs(date).format('YYYY-MM-DD') + 'T' + dayjs(time).format('HH:mm:ss') ;
+    }if(date!=null && time==null){
+        dateTime=dayjs(date).format('YYYY-MM-DD') + 'T' + '00:00:00' ;
+    }
+    
+    const cleanFields=()=>{
+        setTaskTittle('');
+        setDescr('');   
+        setChangetipo(0);
+        setDate(null);
+        setTime(null);
+        setStatus(1);
+    }
+
+    const request = ()=>{
+        
+        fetch("http://localhost:8080/task/task/create" ,{
+            method: "Post",
+            body: JSON.stringify({
+                taskTittle:taskTittle,
+                taskDescription:description,
+                idType:tipo,
+                idStatus:status,
+                taskScheduledDateTime:dateTime
+            }),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        }).then(response=>response.json()).then(res=>{
+            console.log(res);
+            if(tipo==1){
+                props.updateListSQ(res);
+            }else{
+                props.updateListNS(res);
+            }
+            handleClose();
+        }).catch(e =>{
+            console.log(e);
+        })
+    }
+
     const handleSubmit=(event)=>{
-        event.preventDefault();
-        const request = ()=>{
-            fetch("http://localhost:8080/task/task/create" ,{
-                method: "Post",
-                body: JSON.stringify({
-                    tittle,
-                    description,
-                    idType:tipo,
-                    idStatus:status,
-                    scheduledDatetime:date+time,
-                }),
-                headers:{
-                    "Content-Type":"application/json"
-                }
-            }).then(response=>response.json()).then(res=>{
-                console.log(res);
-                handleClose();
-            }).catch(e =>{
-                console.log(e);
-            })
+        if(date==null && time!=null){
+            alert("Debe seleccionar una fecha si selecciona una hora");
         }
-        let dateformat = new Date(date);
-        dateformat=dateformat.toJSON().slice(0, 10);
+        event.preventDefault();
         request();
-        let datetime= String(dateformat);
-        console.log(JSON.stringify({
-            tittle,
-            description,
-            idType:tipo,
-            idStatus:status,
-            scheduledDatetime:time
-        }));
 
     }
     return<div className="">
         <div className="row">
-            <h2>Tareas de hoy</h2>
-            <a onClick={handleOpen}>
+            <a onClick={handleOpen} className="addTaskButton">
                 <img src={agregarTaskimg} alt="logo"/> 
             </a>
         </div>
@@ -101,7 +109,7 @@ function FormAddTask(){
                     <Button onClick={handleClose} style={{height:'35px', minWidth:'40px', margin:'28px'}}> X</Button>
                 </div>
                 <FormControl className="form-modal-addTask">
-                    <TextField onChange={handleChangeTittle} required margin="none" id="tittle-field" label="Titulo" variant="outlined"  className="field-form-modal-addTask"/>
+                    <TextField onChange={handleChangeTaskTittle} required margin="none" id="tittle-field" label="Titulo" variant="outlined"  className="field-form-modal-addTask"/>
                     <TextField onChange={handleChangeDes}required  multiline  rows={4} margin="normal" id="description-field" label="Descripcion" variant="outlined"/>
                     <FormControl>
                         <InputLabel id="tipo-modal-form">Tipo</InputLabel>
@@ -111,8 +119,8 @@ function FormAddTask(){
                         </Select>
                     </FormControl>
                     {
-                        tipo==1&&(<LocalizationProvider id="select-datetime" dateAdapter={AdapterDayjs}>
-                            <DatePicker id="timepicker" className="datetimeField" onChange={setDate} value={date}/>
+                        tipo==1&&(<LocalizationProvider id="select-datetime" dateAdapter={AdapterDayjs} >
+                            <DatePicker id="timepicker" className="datetimeField select-field" onChange={setDate} value={date}/>
                             <TimePicker id="datepicker" className="datetimeField select-field"
                                 value={time}
                                 onChange={setTime}
@@ -121,7 +129,7 @@ function FormAddTask(){
                         </LocalizationProvider>)
                     }
                     {
-                        tipo==1?(<Status visibility={false} statusV={status} changeStatus={handleChangeStatus}></Status>):null
+                        //tipo==1?(<Status visibility={false} statusV={status} changeStatus={handleChangeStatus}></Status>):null
                     }
                     
                     <Button id='saveTask' style={{marginTop:'12px'}} onClick={handleSubmit}>Guardar</Button>

@@ -1,13 +1,33 @@
-$background: #282c34;
-$links: #F7D336;
+$background: white;
+$links: #8cc3e3;
 .body{
-    min-height: 90vh;
+    min-height: 85vh;
+    max-height: 85vh;
+    background-color: white;
 }
+
 .app-header {
     background-color: $background;
     max-height: 100px;
+    .dayTittle{
+        color: #3a3939fc;
+        font-family:'Courier New', Courier, monospace;
+        font-size: 35px;
+        justify-content:center;
+        padding-left: 38px;
+        font-weight: 600;
+        .imgTittle{
+            height: 90px;
+            position: relative;
+        }
+        .dayName{
+            position: absolute;
+            align-self: center;
+            padding-left: 10px;
+        }
+    }
     h1{
-        font-family: Courier New;
+        font-family:'Courier New', Courier, monospace;
         margin: 0;
     }
     .row{
@@ -29,19 +49,16 @@ $links: #F7D336;
     }
     .tittle-link {
         color: $links;
-        text-align: left;
         font-size:50px;
-       // font-family: math;
+        height: 70px;
     }
-    .tittle-board{
-        color:aquamarine;
-        font-size: 50px;
-        //font-weight: 400;
-       // font-family: math;
-    }
+
+    
+  
     .imgLogo{
-        height:60px;
-        margin-left: 10px;
+        height: 90px;
+        margin: 2% 0 0 15%;
+
     }  
     .actionButton{
         div{
@@ -87,10 +104,7 @@ $links: #F7D336;
         }
     }
 }
-.imgBoard{
-    height: 60px;
-    margin-left: 0px;
-}
+
 FreeTime{
     background-color: antiquewhite;
 }

@@ -8,11 +8,12 @@
 .container-home{  
     .row{
         justify-content: space-between;
-        h2{
-            font-weight: 100;
-            padding-left: 4%;
-            color: mediumslateblue;
-            line-height: 0.4px;
+        .tittleTaskSection{
+            font-family:'Courier New', Courier, monospace;
+            font-size: 22px;
+            margin: auto;
+            color: rgb(120, 116, 116);
+            padding-top: 20px;
         }
     }
     img{
@@ -20,23 +21,24 @@
     }
 }
 .home-task{
-    background-color: pink;
+    background-color: #edd9dd;
     height: 100%;
-    border-bottom: solid gray 1px;
+    border-radius: 10px;
+    margin: 0 8px 8px 8px;
 }
 .container-home{
-    padding: 20px;
     ul{
         text-align: right;
         li{
-            color:black;
+            color:rgb(138, 137, 137);
             font-size:14px;
             list-style: none;
             border-bottom: solid gray 1px;
             text-align: left;
             line-height: 1.6;
+            font-weight: lighter;
+            width: 95%;
         }
-        min-width: 60%;
         
     }
     
