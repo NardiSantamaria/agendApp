@@ -31,6 +31,7 @@ function App() {
   const updateListTaskNS=(task)=>{
     setTaskNS([...taskNS, task]);
   }
+  
   const updateListTaskSQ=(task)=>{
     setTaskSQ([...taskSQ, task]);
   }

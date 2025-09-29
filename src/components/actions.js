@@ -23,6 +23,5 @@ class actions extends React.Component{
             </Link>
         </div>
     }
-
 }
 export default actions;

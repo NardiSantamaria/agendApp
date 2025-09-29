@@ -7,14 +7,10 @@ class Task extends React.Component{
         const{description=''}=this.props;
         const{status=''}=this.props;
         const{taskScheduledDateTime=''}=this.props;
-        // if(this.props.use==false){
-            return(
-                <li>
-                    {time} {text} {description} {status} {taskScheduledDateTime}
-                </li>
-            )
-        // }
-    
-        
+        return(
+            <li>
+                {time} {text} {description} {status} {taskScheduledDateTime}
+            </li>
+        )
     }
 }export default Task;

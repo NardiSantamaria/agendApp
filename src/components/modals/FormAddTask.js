@@ -14,10 +14,12 @@ function FormAddTask(props){
     const handleOpen = () => {
         setOpen(true);
     };
+
     const handleClose = () => {
         setOpen(false);
         cleanFields();
     };
+
     const [date, setDate] = React.useState(null);
     const [time, setTime] = React.useState(null);
     const [tipo, setChangetipo]=React.useState(0);
@@ -25,13 +27,13 @@ function FormAddTask(props){
     const [description, setDescr]=React.useState('');
     const [status, setStatus]=React.useState(1);
     let dateTime=null;
+
     const handleChangeTipo=(event)=>{
         setChangetipo(event.target.value);
         if(event.target.value==2){
             setDate(null);
             setTime(null);
         }
-
     }
 
     const handleChangeTaskTittle=(event) =>{
@@ -58,7 +60,6 @@ function FormAddTask(props){
     }
 
     const request = ()=>{
-        
         fetch("http://localhost:8080/task/task/create" ,{
             method: "Post",
             body: JSON.stringify({
@@ -90,8 +91,8 @@ function FormAddTask(props){
         }
         event.preventDefault();
         request();
-
     }
+    
     return<div className="">
         <div className="row">
             <a onClick={handleOpen} className="addTaskButton">
@@ -127,17 +128,12 @@ function FormAddTask(props){
                                 format="hh:mm:ss"
                             />
                         </LocalizationProvider>)
-                    }
-                    {
-                        //tipo==1?(<Status visibility={false} statusV={status} changeStatus={handleChangeStatus}></Status>):null
-                    }
-                    
+                    }                  
                     <Button id='saveTask' style={{marginTop:'12px'}} onClick={handleSubmit}>Guardar</Button>
                 </FormControl>
             </Box>
         </Modal>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     </div>
-    
 }
 export default FormAddTask;

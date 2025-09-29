@@ -4,11 +4,8 @@ import Task from "../components/Task";
 class FreeTimeTask extends React.Component{
     constructor(props){
         super(props);
-        this.state={
-            isLoaded:false,
-            tasks:[]
-        }
-    } 
+    }
+    
     render(){
         const {list}=this.props;
         return <div className="freeTime container-home">

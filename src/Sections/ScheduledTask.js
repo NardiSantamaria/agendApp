@@ -5,18 +5,13 @@ import Task from "../components/Task";
 class ScheduledTask extends React.Component{
     constructor(props){
         super(props);
-        this.state={
-                error: null,
-                isLoaded: false,
-                tasks:[]
-            };
     }
     
     render(){
         const {list}=this.props;
         return <div className="container-home home-task">
             <div className="row">
-                <h2 className="tittleTaskSection">Tareas de hoy</h2>
+                <h2 className="tittleTaskSection">Tareas programadas</h2>
             </div>
             <ul>
                 {list.map(task=> {
@@ -24,9 +19,7 @@ class ScheduledTask extends React.Component{
                 
                 })}
             </ul>
-            
-        </div>
-       
+        </div> 
     }
 }export default ScheduledTask;
 
