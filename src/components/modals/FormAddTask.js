@@ -22,11 +22,15 @@ function FormAddTask(props){
 
     const [date, setDate] = React.useState(null);
     const [time, setTime] = React.useState(null);
-    const [tipo, setChangetipo]=React.useState(0);
-    const [taskTittle, setTaskTittle]=React.useState('');
+    const [tipo, setChangetipo]=React.useState(2);
+    const [taskTitle, setTaskTitle]=React.useState('');
     const [description, setDescr]=React.useState('');
     const [status, setStatus]=React.useState(1);
-    let dateTime=null;
+    const [titleError, setTitleError]=React.useState(null);
+    const [descriptionError, setDescriptionError]=React.useState(null);
+    const [dateError, setDateError]=React.useState(null);
+    const [timeError, setTimeError]=React.useState(null);
+    const [formError, setFormError]=React.useState(null);
 
     const handleChangeTipo=(event)=>{
         setChangetipo(event.target.value);
@@ -36,22 +40,62 @@ function FormAddTask(props){
         }
     }
 
-    const handleChangeTaskTittle=(event) =>{
-        setTaskTittle(event.target.value)
+    const handleChangeTaskTitle=(event) =>{
+        if(event.target.value.length==0){
+            setTitleError(true);
+        }else{
+            setTitleError(false);
+        }
+        setTaskTitle(event.target.value)
     }
 
     const handleChangeDes=(event)=>{
+        if(event.target.value.length>200){
+            setDescriptionError(true);
+        }else{
+            setDescriptionError(false);
+        }
         setDescr(event.target.value)
     }
     
-    if(date!=null && time!=null ){
-        dateTime=dayjs(date).format('YYYY-MM-DD') + 'T' + dayjs(time).format('HH:mm:ss') ;
-    }if(date!=null && time==null){
-        dateTime=dayjs(date).format('YYYY-MM-DD') + 'T' + '00:00:00' ;
+    const showError=(message)=>{
+        return <label className="error-message" id="error-message">{message}</label>
     }
-    
+
+    const dateTimeFormat=()=>{
+        let dateTime=null;
+        if(date!=null && time!=null ){
+        dateTime=dayjs(date).format('YYYY-MM-DD') + 'T' + dayjs(time).format('HH:mm:ss') ;
+        }if(date!=null && time==null){
+            dateTime=dayjs(date).format('YYYY-MM-DD') + 'T' + '00:00:00' ;
+        }
+        return dateTime;
+    }
+
+    const validateDate=()=>{
+        if(dayjs(date).isBefore(dayjs())){
+            setDateError(true);
+            showError("La fecha no puede ser anterior a la actual");
+        }else{
+            setDateError(false);
+        }
+        if(date!=null && time==null){
+            setTimeError(true);
+            showError("La fecha es obligatoria si se selecciona una hora");
+        }else{
+            setTimeError(false);
+        }
+        if(dateError || timeError){
+            setFormError(true);
+        }
+    }  
+
+     React.useEffect(()=>{
+        validateDate();
+    },[formError]);
+
     const cleanFields=()=>{
-        setTaskTittle('');
+        setTaskTitle('');
         setDescr('');   
         setChangetipo(0);
         setDate(null);
@@ -63,11 +107,11 @@ function FormAddTask(props){
         fetch("http://localhost:8080/task/task/create" ,{
             method: "Post",
             body: JSON.stringify({
-                taskTittle:taskTittle,
+                taskTittle:taskTitle,
                 taskDescription:description,
                 idType:tipo,
                 idStatus:status,
-                taskScheduledDateTime:dateTime
+                taskScheduledDateTime:dateTimeFormat()
             }),
             headers:{
                 "Content-Type":"application/json"
@@ -86,13 +130,10 @@ function FormAddTask(props){
     }
 
     const handleSubmit=(event)=>{
-        if(date==null && time!=null){
-            alert("Debe seleccionar una fecha si selecciona una hora");
-        }
         event.preventDefault();
         request();
     }
-    
+
     return<div className="">
         <div className="row">
             <a onClick={handleOpen} className="addTaskButton">
@@ -110,8 +151,10 @@ function FormAddTask(props){
                     <Button onClick={handleClose} style={{height:'35px', minWidth:'40px', margin:'28px'}}> X</Button>
                 </div>
                 <FormControl className="form-modal-addTask">
-                    <TextField onChange={handleChangeTaskTittle} required margin="none" id="tittle-field" label="Titulo" variant="outlined"  className="field-form-modal-addTask"/>
-                    <TextField onChange={handleChangeDes}required  multiline  rows={4} margin="normal" id="description-field" label="Descripcion" variant="outlined"/>
+                    <TextField required onChange={handleChangeTaskTitle} margin="none" id="Title-field" label="Titulo" variant="outlined"  className="field-form-modal-addTask"/>
+                    {titleError && showError("El titulo es obligatorio")}
+                    <TextField required onChange={handleChangeDes} multiline  rows={4} margin="normal" id="description-field" label="Description" variant="outlined"/>
+                    {descriptionError && showError("La descripcion es muy larga")}
                     <FormControl>
                         <InputLabel id="tipo-modal-form">Tipo</InputLabel>
                         <Select onChange={handleChangeTipo } value={tipo} label="Tipo" labelId="tipo-modal-form" id="select-tipo" className="select-field"> 
@@ -128,8 +171,9 @@ function FormAddTask(props){
                                 format="hh:mm:ss"
                             />
                         </LocalizationProvider>)
-                    }                  
-                    <Button id='saveTask' style={{marginTop:'12px'}} onClick={handleSubmit}>Guardar</Button>
+                    }            
+                    <Button id='saveTask' className="submit-button" onClick={handleSubmit} disabled={formError}>Guardar</Button>
+                    { formError && showError("Revisar los campos del formulario")}      
                 </FormControl>
             </Box>
         </Modal>

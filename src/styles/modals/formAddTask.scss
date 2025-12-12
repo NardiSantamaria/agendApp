@@ -9,7 +9,6 @@
             width: 30px;
             height: 30px;
         }
-
     }
     #modal-modal-title{
         font-weight: 100;
@@ -36,10 +35,16 @@
     text-align: center;
     
     .form-modal-addTask{
+        .submit-button:disabled{
+            background-color: lightgray;
+            color: gray;
+            cursor: not-allowed;
+            margin-top:12px;
+        }
         min-width: 400px;
         .select-field{
             margin-top: 10px;
         }
-        
     }
 };
+
